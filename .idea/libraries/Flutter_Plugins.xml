@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Flutter Plugins" type="FlutterPluginsLibraryType">
     <CLASSES>
-      <root url="file://$USER_HOME$/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-1.1.0" />
-      <root url="file://$USER_HOME$/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/share-0.6.1+1" />
-      <root url="file://$USER_HOME$/Documents/flutter/.pub-cache/hosted/pub.dartlang.org/audioplayers-0.12.1" />
+      <root url="file://C:/Flutter/.pub-cache/hosted/pub.dartlang.org/share-0.6.3+5" />
+      <root url="file://C:/Flutter/.pub-cache/hosted/pub.dartlang.org/path_provider-1.5.1" />
+      <root url="file://C:/Flutter/.pub-cache/hosted/pub.dartlang.org/audioplayers-0.12.1" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />
