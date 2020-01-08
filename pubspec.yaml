@@ -28,6 +28,7 @@ flutter:
     - assets/boss/
     - assets/elements/
     - assets/audio/
+    - assets/coconut/
 
   fonts:
     - family: Gameplay
