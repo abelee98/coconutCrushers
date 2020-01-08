@@ -12,12 +12,6 @@ build/
 # If you're building an application, you may want to check-in your pubspec.lock
 pubspec.lock
 
-# Visual Studio Code related
-.classpath
-.project
-.settings/
-.vscode/
-
 # Android related
 **/android/**/gradle-wrapper.jar
 **/android/.gradle
