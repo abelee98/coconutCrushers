@@ -24,7 +24,6 @@ void _setTargetPlatformForDesktop() {
 }
 
 class TapHero extends StatefulWidget {
-
   @override
   _TapHeroState createState() => _TapHeroState();
 }
