@@ -13,6 +13,7 @@ dependencies:
   audioplayers: ^0.12.1
   share: ^0.6.1+1
   simple_animations: ^1.2.0
+  flare_flutter: ^1.8.3
 
 dev_dependencies:
   flutter_test:

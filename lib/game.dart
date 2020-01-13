@@ -3,6 +3,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 import 'package:flutter/services.dart';
+import 'package:flare_flutter/flare_actor.dart';
 
 import 'button.dart';
 import 'dart:async';
@@ -20,14 +21,14 @@ class Game extends StatefulWidget {
 
 class _GameState extends State<Game> with WidgetsBindingObserver, TickerProviderStateMixin {
   AnimationController controller;
-  int duration = 1000 * 30;
+  int duration = 10000000 * 30;
   int durationBackup;
 
   static const MethodChannel _channel = const MethodChannel('gamepad');
 
-  static String skyAsset() => "assets/background/sky.png";
+  static String skyAsset() => "assets/background/Sky.png";
 
-  static String stageAsset() => "assets/background/front.png";
+  static String stageAsset() => "assets/coconut/Sky.png";
 
   static var multiplier = 1.0;
   static var damageDefault = 980.0;
@@ -147,7 +148,7 @@ class _GameState extends State<Game> with WidgetsBindingObserver, TickerProvider
   }
 
   double listHeight(BuildContext context) {
-    return width(context) >= 700 ? height(context) : height(context) / 2.8;
+    return width(context) >= 700 ? height(context) : height(context) / 2.3;
   }
 
   void buyPowerUp(int index) {
@@ -234,7 +235,7 @@ class _GameState extends State<Game> with WidgetsBindingObserver, TickerProvider
   }
 
   String hero() {
-    return tap ? "assets/character/attack.png" : "assets/character/idle.png";
+    return "assets/coconut/Person2.png";
   }
 
   void share() {
@@ -284,39 +285,35 @@ class _GameState extends State<Game> with WidgetsBindingObserver, TickerProvider
             SizedBox.expand(
               // Background
               child: Image.asset(
-                skyAsset(),
+                stageAsset(),
                 fit: BoxFit.cover,
               ),
             ),
             Align(
-              child: Image.asset(
-                stageAsset(),
-                alignment: Alignment.bottomCenter,
-                fit: BoxFit.fitWidth,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 30.0),
+                child: Container(
+                  height: width(context) / 1.5 < 380 ? width(context) / 1.5 : 380,
+                  child: FlareActor(bosses[bossIndex].asset,
+                      shouldClip: false,
+                      // Play the animation depending on the state.
+                      animation:
+                          tap ? "Hit" : "NotHit" //_animationName
+                      )),
               ),
               alignment: Alignment.bottomCenter,
             ),
             Align(
               child: Padding(
-                padding: const EdgeInsets.only(bottom: 80.0),
-                child: Image.asset(
-                  bosses[bossIndex].asset,
-                  height: width(context) / 2.5 < 380 ? width(context) / 2.5 : 380,
-                  fit: BoxFit.fill,
-                  color: tap ? Color(0x80FFFFFF) : null,
-                ),
-              ),
-              alignment: Alignment.bottomCenter,
-            ),
-            Align(
-              child: Padding(
-                padding: EdgeInsets.only(bottom: 50.0),
-                child: Image.asset(
-                  hero(),
-                  height: width(context) / 6 < 160 ? width(context) / 6 : 160,
-                  fit: BoxFit.fill,
-                  alignment: Alignment.bottomCenter,
-                ),
+                padding: EdgeInsets.only(bottom: 0.0),
+                child: Container(
+                  height: width(context) / 5 < 160 ? width(context) / 5 : 160,
+                  child: FlareActor("assets/coconut/Person2.flr",
+                      shouldClip: false,
+                      // Play the animation depending on the state.
+                      animation:
+                          tap ? "Swing" : "Idle" //_animationName
+                      )),
               ),
               alignment: Alignment.bottomCenter,
             ),
@@ -456,7 +453,7 @@ class _GameState extends State<Game> with WidgetsBindingObserver, TickerProvider
 
   Widget sidePanel() {
     return Container(
-      color: Colors.black,
+      color: Color(0xFFD7A13E),
       height: listHeight(context),
       width: width(context) >= 700
           ? width(context) >= 700 && width(context) <= 900 ? width(context) - 700 + 300 : 400
