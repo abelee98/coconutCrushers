@@ -129,11 +129,9 @@ class _WelcomeState extends State<Welcome> with WidgetsBindingObserver, TickerPr
 
   @override
   void didChangeDependencies() {
-    if (!Utils.isDesktop()) {
-      if (!musicPlaying) {
-        musicPlaying = true;
-        playMusic();
-      }
+    if (!musicPlaying) {
+      musicPlaying = true;
+      playMusic();
     }
     super.didChangeDependencies();
   }
@@ -193,14 +191,12 @@ class _WelcomeState extends State<Welcome> with WidgetsBindingObserver, TickerPr
   }
 
   void switchMusic() {
-    if (!Utils.isDesktop()) {
-      if (musicPlaying && instance != null) {
-        instance.pause();
-        musicPlaying = false;
-      } else {
-        playMusic();
-        musicPlaying = true;
-      }
+    if (musicPlaying && instance != null) {
+      instance.pause();
+      musicPlaying = false;
+    } else {
+      playMusic();
+      musicPlaying = true;
     }
   }
 
@@ -208,11 +204,9 @@ class _WelcomeState extends State<Welcome> with WidgetsBindingObserver, TickerPr
   void dispose() {
     disposeAnimations();
 
-    if (!Utils.isDesktop()) {
-      if (musicPlaying && instance != null) {
-        instance.stop();
-        musicPlaying = false;
-      }
+    if (musicPlaying && instance != null) {
+      instance.stop();
+      musicPlaying = false;
     }
 
     WidgetsBinding.instance.removeObserver(this);
@@ -222,19 +216,19 @@ class _WelcomeState extends State<Welcome> with WidgetsBindingObserver, TickerPr
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
-    if (!Utils.isDesktop()) {
-      if (state == AppLifecycleState.inactive && instance != null) {
-        if (musicPlaying) {
-          instance.stop();
-          musicPlaying = false;
-        }
-      } else if (state == AppLifecycleState.resumed) {
-        if (!musicPlaying) {
-          musicPlaying = true;
-          playMusic();
-        }
+
+    if (state == AppLifecycleState.inactive && instance != null) {
+      if (musicPlaying) {
+        instance.stop();
+        musicPlaying = false;
+      }
+    } else if (state == AppLifecycleState.resumed) {
+      if (!musicPlaying) {
+        musicPlaying = true;
+        playMusic();
       }
     }
+
   }
 
   @override

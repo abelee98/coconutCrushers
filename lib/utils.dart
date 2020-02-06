@@ -81,10 +81,6 @@ class Utils {
   static Pair mapToPair(Map<int, bool> map) {
     return Pair(map.keys.toList()[0], map.values.toList()[0]);
   }
-
-  static bool isDesktop() {
-    return Platform.isMacOS || Platform.isWindows || Platform.isLinux;
-  }
 }
 
 class StrokeText extends StatelessWidget {

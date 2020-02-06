@@ -95,10 +95,9 @@ class _GameState extends State<Game> with WidgetsBindingObserver, TickerProvider
   }
 
   void damage(TapDownDetails details) {
-    if (!Utils.isDesktop()) {
-      hitPlayer.pause();
-      hitCache.play('audio/sword.mp3');
-    }
+    hitPlayer.pause();
+    hitCache.play('audio/sword.mp3');
+
     setState(() {
 
       if (details != null) {
@@ -118,9 +117,7 @@ class _GameState extends State<Game> with WidgetsBindingObserver, TickerProvider
         damageBar = bosses[bossIndex].life.toDouble() * multiplier;
         earnedCoin = true;
         onEarnTime?.call();
-        if (!Utils.isDesktop()) {
-          coinCache.play('audio/coin.mp3');
-        }
+        coinCache.play('audio/coin.mp3');
         Future.delayed(const Duration(seconds: 1), () {
           setState(() {
             earnedCoin = false;
@@ -151,9 +148,7 @@ class _GameState extends State<Game> with WidgetsBindingObserver, TickerProvider
   }
 
   void buyPowerUp(int index) {
-    if (!Utils.isDesktop()) {
-      coinCache.play('audio/money.mp3');
-    }
+    coinCache.play('audio/money.mp3');
     setState(() {
       if (coins >= list[index].coins) {
         coins = coins - list[index].coins;
@@ -242,14 +237,12 @@ class _GameState extends State<Game> with WidgetsBindingObserver, TickerProvider
   }
 
   void switchMusic() {
-    if (!Utils.isDesktop()) {
-      if (musicPlaying && instance != null) {
-        instance.pause();
-        musicPlaying = false;
-      } else {
-        playMusic();
-        musicPlaying = true;
-      }
+    if (musicPlaying && instance != null) {
+      instance.pause();
+      musicPlaying = false;
+    } else {
+      playMusic();
+      musicPlaying = true;
     }
   }
 
@@ -621,14 +614,13 @@ class _GameState extends State<Game> with WidgetsBindingObserver, TickerProvider
   void initState() {
     WidgetsBinding.instance.addObserver(this);
     super.initState();
-
-    if (!Utils.isDesktop()) {
-      initPlayer();
-      if (!musicPlaying) {
-        musicPlaying = true;
-        playMusic();
-      }
+    
+    initPlayer();
+    if (!musicPlaying) {
+      musicPlaying = true;
+      playMusic();
     }
+
 
     initClock(add: 0);
     onEarnTime = () {
@@ -666,11 +658,9 @@ class _GameState extends State<Game> with WidgetsBindingObserver, TickerProvider
 
   @override
   void dispose() {
-    if (!Utils.isDesktop()) {
-      if (musicPlaying && instance != null) {
-        instance.stop();
-        musicPlaying = false;
-      }
+    if (musicPlaying && instance != null) {
+      instance.stop();
+      musicPlaying = false;
     }
     WidgetsBinding.instance.removeObserver(this);
     super.dispose();
@@ -680,23 +670,21 @@ class _GameState extends State<Game> with WidgetsBindingObserver, TickerProvider
   void didChangeAppLifecycleState(AppLifecycleState state) {
     super.didChangeAppLifecycleState(state);
 
-    if (!Utils.isDesktop()) {
-      if (state == AppLifecycleState.inactive && instance != null) {
-        if (musicPlaying) {
-          instance.stop();
-          musicPlaying = false;
+    if (state == AppLifecycleState.inactive && instance != null) {
+      if (musicPlaying) {
+        instance.stop();
+        musicPlaying = false;
+      }
+    } else if (state == AppLifecycleState.resumed) {
+      if (!gameOver) {
+        if (!musicPlaying) {
+          musicPlaying = true;
+          playMusic();
         }
-      } else if (state == AppLifecycleState.resumed) {
-        if (!gameOver) {
-          if (!musicPlaying) {
-            musicPlaying = true;
-            playMusic();
-          }
-        } else {
-          if (!musicPlaying) {
-            musicPlaying = true;
-            playGameOver();
-          }
+      } else {
+        if (!musicPlaying) {
+          musicPlaying = true;
+          playGameOver();
         }
       }
     }
