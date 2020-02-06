@@ -621,7 +621,6 @@ class _GameState extends State<Game> with WidgetsBindingObserver, TickerProvider
       playMusic();
     }
 
-
     initClock(add: 0);
     onEarnTime = () {
       initClock(add: addedDuration);
