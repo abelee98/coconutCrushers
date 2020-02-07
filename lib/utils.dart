@@ -58,15 +58,12 @@ class Utils {
 
   static List<Bosses> getBosses() {
     var list = List<Bosses>();
-    list.add(Bosses("Lunabi", 450, "assets/boss/boss_one.png"));
-    list.add(Bosses("ivygrass", 880, "assets/boss/boss_two.png"));
-    list.add(Bosses("Tombster", 1120, "assets/boss/boss_three.png"));
-    list.add(Bosses("Glidestone", 2260, "assets/boss/boss_four.png"));
-    list.add(Bosses("Smocka", 2900, "assets/boss/boss_five.png"));
-    list.add(Bosses("Clowntorch", 4100, "assets/boss/boss_six.png"));
-    list.add(Bosses("Marsattack", 5380, "assets/boss/boss_seven.png"));
-    list.add(Bosses("Unknown", 7000, "assets/boss/boss_eight.png"));
-    list.add(Bosses("ExArthur", 10000, "assets/boss/boss_nine.png"));
+    list.add(Bosses("Two Cheeks", 450, "assets/coconut/Brown.flr"));
+    list.add(Bosses("Pina", 450, "assets/coconut/Drink.flr"));
+    list.add(Bosses("Hotshot", 450, "assets/coconut/Fire.flr"));
+    list.add(Bosses("CocoNa", 450, "assets/coconut/Starfish.flr"));
+    list.add(Bosses("Eggie", 450, "assets/coconut/Egg.flr"));
+    list.add(Bosses("Baby Shark", 450, "assets/coconut/Shark.flr"));
     return list;
   }
 

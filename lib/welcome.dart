@@ -27,9 +27,9 @@ class _WelcomeState extends State<Welcome> with WidgetsBindingObserver, TickerPr
 
   static String logoAsset() => "assets/elements/taptaphero.png";
 
-  static String heroAsset() => "assets/elements/hero.png";
+  static String heroAsset() => "assets/coconut/Person2@2x.png";
 
-  static String bossAsset() => "assets/elements/boss.png";
+  static String bossAsset() => "assets/coconut/Healthy.png";
 
   var heroYAxis = 0.0;
   var bossYAxis = 1.0;
@@ -248,11 +248,11 @@ class _WelcomeState extends State<Welcome> with WidgetsBindingObserver, TickerPr
             alignment: Alignment.center,
             child: Align(
               alignment: Alignment(0.0, -1.0),
-              heightFactor: bossYAxis,
+              heightFactor: bossYAxis+0.5,
               child: Image.asset(
                 bossAsset(),
-                width: size,
-                height: size,
+                width: size/2,
+                height: size/2,
                 fit: BoxFit.cover,
               ),
             ),
@@ -266,12 +266,12 @@ class _WelcomeState extends State<Welcome> with WidgetsBindingObserver, TickerPr
               alignment: Alignment.bottomCenter,
               child: Align(
                 alignment: Alignment.topCenter,
-                heightFactor: heroYAxis,
+                heightFactor: heroYAxis+0.25,
                 child: Image.asset(
                   heroAsset(),
-                  width: size / 1.5,
-                  height: size / 1.5,
-                  fit: BoxFit.cover,
+                  width: size / 2,
+                  height: size / 2,
+                  fit: BoxFit.contain,
                 ),
               ),
             ),
